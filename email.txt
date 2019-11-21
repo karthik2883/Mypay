@@ -1,0 +1,14 @@
+Dear Customer,
+We have processed your Bitcoin payment and your merchant has been notified!
+However, we detected that you have overpaid the invoice by 0.03601091 BTC.
+Please visit the invoice (link below) and fill out the refund form to claim the overpayment back to your wallet. Refunds are issued free of charge, within 48 hours of request.
+Invoice link: https://sandbox.coingate.com/invoice/0c9215cc-2272-4478-9305-8a104323e688
+Please note, the form will only be activated when all transactions sent to the invoice address are confirmed on the network.
+In case you have any questions about the goods or services you have purchased, please contact your seller.
+Order details
+CoinGate Order #218976
+Merchant Reference: ORDER-1574310745131236-25723
+Price: 5.0 USD
+Payment amount: 0.00061731 BTC
+Payment received: 2019-11-21 04:53:59 UTC
+Did you find the payment experience convenient? We are always aiming to improve, so please leave us a review on TrustPilot or send your feedback to support@coingate.com!
