@@ -1,5 +1,5 @@
 {
-  "name": "mypay",
+  "name": "mypay-admin",
   "version": "1.0.0",
   "description": "Node Application based on express js with es6 and integrated with mongodb",
   "main": "dist/app.js",
