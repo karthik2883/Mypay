@@ -6,11 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="jq/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".card_2").hide();
+            $(".coin").click(function () {
+                $("._pay").prop('disabled', false);
+
+            });
+            $("._pay").click(function () {
+                $(".card_1").hide();
+                $(".card_2").show();
+            });
+        })
+    </script>
 </head>
 
 <body>
-    <div class="container">
-        <div class="card">
+    <div class="container p-2">
+
+        <div class="card card_1">
             <div class="card-header">
                 Mypay
             </div>
@@ -22,13 +38,13 @@
                 <p class="card-text">Select payment currency</p>
                 <form>
                     <div class="form-group row  p-2">
-                        <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin</button>
-                        <button type="button" class="btn btn-outline-secondary ml-1">Litecoin</button>
-                        <button type="button" class="btn btn-outline-secondary ml-1">Dash</button>
+                        <button type="button" class="btn btn-outline-secondary coin _bitcoin ml-1">Bitcoin</button>
+                        <button type="button" class="btn btn-outline-secondary  coin _litecoin ml-1">Litecoin</button>
+                        <!-- <button type="button" class="btn btn-outline-secondary ml-1">Dash</button>
                         <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin Cash</button>
                         <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin Gold</button>
                         <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin Diamond</button>
-                        <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin Private</button>
+                        <button type="button" class="btn btn-outline-secondary ml-1">Bitcoin Private</button> -->
                     </div>
 
                     <div class="form-group">
@@ -36,13 +52,49 @@
                             placeholder="Your email for payment recipent">
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-block">Pay With Coin</button>
+                        <button type="button" disabled class="btn btn-outline-secondary btn-lg btn-block _pay">Pay
+                            With
+                            Coin</button>
                         <p>Currency cannot be changed after proceeding</p>
                     </div>
 
                 </form>
             </div>
         </div>
+        <div class="card card_2" style="display:none;">
+            <div class="card-header">
+                Mypay
+            </div>
+            <div class="card-body">
+                <p class="card-text">Order #25749</p>
+                <p class="card-text">2 × Brewed Coffee</p>
+                <p class="card-text">1 USD</p>
+                <hr size="30">
+                <p class="card-text">00:19:00</p>
+                <div>QR code</div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">BTC</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="0.12">
+                </div>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Wallet</div>
+                    </div>
+                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                        placeholder="2N8sA8PXGufmc19ZbRxYzVeoGsmYmnVBzsD">
+                </div>
+                <div>
+                    Do not send funds from an exchange. Here is why.
+                    The payment is processed on behalf of the merchant (charity) that referred you to this invoice
+                    by
+                    UAB Virtualios
+                    Valiutos (Mypay). Disclaimer applies.
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
