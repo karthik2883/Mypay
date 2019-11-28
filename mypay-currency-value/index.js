@@ -17,12 +17,13 @@ ws.connect((client) => {
     //     console.log('[getSummaryDeltas]:', data);
     // });
     client.getSummaryDeltas((data) => {
-         console.log(data.Deltas.length);
+       //  console.log(data.Deltas.length);
         var d = data.Deltas.filter(function (a) {
            // console.log(a.MarketName);
-           return a.MarketName.match(/USDT-/g);
+           return a.MarketName.match(/USD-/g);
             
         });
+        console.log(d.length);
         console.log(d);
         // if (data.Deltas[0]){
         //     console.log(data.Deltas[0].MarketName, data.Deltas[0].Last);
