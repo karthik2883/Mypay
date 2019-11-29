@@ -13,9 +13,7 @@ ws.on('disconnected', () => { /* ... */ });
 ws.connect((client) => {
     client.authenticate();
 
-    // client.getSummaryDeltas((data) => {
-    //     console.log('[getSummaryDeltas]:', data);
-    // });
+    
     client.getSummaryDeltas((data) => {
        //  console.log(data.Deltas.length);
         var d = data.Deltas.filter(function (a) {
