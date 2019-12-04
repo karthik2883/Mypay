@@ -11,17 +11,24 @@
  * coins information , current coin price 
  *  
  */
+import env from './env'
+import MQTT from 'mqtt'
+var client = MQTT.connect(env.MQTT_CONNECTION);
+var message = [];
 
-var mqtt = require('mqtt')
-var client = mqtt.connect('mqtt://localhost:1883')
-
+/**
+ * what type of call will come 
+ * a) address creation , transaction from the node
+ * b) request from the merchant 
+ * d) session alive management
+ *
+ **/
 client.on('connect', function () {
+    
     client.subscribe('presence', function (err) {
         if (!err) {
-            client.publish('presence', '2N8sA8PXGufmc19ZbRxYzVeoGsmYmnVBzsD')
-            client.publish('presence', '2N8sA8PXGufmc19ZbRxYzVeoGsmYmnVBzsD')
-            client.publish('presence', '2N8sA8PXGufmc19ZbRxYzVeoGsmYmnVBzsD')
-            client.publish('presence', '2N8sA8PXGufmc19ZbRxYzVeoGsmYmnVBzsD')
+            message
+            client.publish('presence', '')            
         }
     })
 })

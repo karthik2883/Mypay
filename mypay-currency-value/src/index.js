@@ -36,6 +36,7 @@ ws.connect((client) => {
             return a.MarketName.match(/USD-/g);
         });
         d.forEach(element => {
+          // console.log(element.MarketName ,element.Last);
             var find_json_data = {
                 "coinname": element.MarketName
             }
@@ -50,12 +51,19 @@ ws.connect((client) => {
                 coinvolume: element.BaseVolume
             };
             controller.getCount(find_json_data, function (counter) {
-                  if (counter >= 1) {
-                    controller.update(find_json_data, update_json_data,function(err,data){
-                        if(!err){    
-                          console.log(data);
-                        }else{
-                           console.log(err);
+                if (counter >= 1) {
+                    controller.getbyname(find_json_data, function (id) {
+                        if (id) {
+                            console.log(update_json_data);
+                            controller.update({_id:id._id}, update_json_data, function (err, data) {
+                                if (!err) {
+                                    console.log(data);
+                                } else {
+                                    console.log(err);
+                                }
+                            });
+                        } else {
+                            console.log(err);
                         }
                     });
                 } else {
@@ -63,7 +71,7 @@ ws.connect((client) => {
                         console.log(e);
                     });
                 }
-                
+
             });
         });
     });
