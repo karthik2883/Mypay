@@ -2,7 +2,7 @@
   "name": "mypay-payment",
   "version": "1.0.0",
   "description": "user interaction interface",
-  "main": "dist/app.js",
+  "main": "dist/index.js",
   "scripts": {
     "build-dev": "babel --watch src --out-dir dist --source-maps",
     "build-prod": "babel src --out-dir dist",

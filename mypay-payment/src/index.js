@@ -2,7 +2,7 @@ import express from 'express';
 import mqtt from 'mqtt';
 import jwt from 'jsonwebtoken';
 import env from './env';
-var client = mqtt.connect(env.Mqtt_C);
+var client = mqtt.connect(env.MQTT_CONNECTION);
 const app = express();
 
 var router = express.Router();
@@ -101,16 +101,16 @@ router.use(function (req, res, next) {
 */
 
 router.get("/", function (req, res) {
-    res.sendFile(env.Views + "index.html");
+    res.sendFile(env.VIEWS + "index.html");
 });
 
 router.post("/invoiceinfo", function (req, res) {
     console.log(req.body);
 });
 
-app.use('/jq', express.static(env.Base_D + '/node_modules/jquery/dist'));
-app.use('/js', express.static(env.Base_D +'/node_modules/bootstrap/dist/js'));
-app.use('/css', express.static(env.Base_D +'/node_modules/bootstrap/dist/css')); 
+app.use('/jq', express.static(env.BASE_DIR + '/node_modules/jquery/dist'));
+app.use('/js', express.static(env.BASE_DIR +'/node_modules/bootstrap/dist/js'));
+app.use('/css', express.static(env.BASE_DIR +'/node_modules/bootstrap/dist/css')); 
 app.use("/", router);
 
 app.listen(3000, function () {
