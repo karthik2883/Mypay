@@ -2,9 +2,9 @@ import coinvalueModel from '../models/coinvalueModel'
 
 const coinvalueController = {
 
-    getAll: async (req, res, next) => {
+    getAll:(req, res, next) => {
         coinvalueModel.find({}, (err, data) => {
-            if (err) return console.log(err);
+            if (err){  console.log(err) };
             console.log(data);
         });
     },
@@ -13,22 +13,33 @@ const coinvalueController = {
             return (data || {});
         });
     },    
-    getbyname:(req,res,next)=>{
-        coinvalueModel.findOne("",req,(err, data) => {
-          return (data || {});
+    getbyname:(req,next)=>{
+        coinvalueModel.findOne(req,(err, data) => {
+            if (err) { console.log(err) };
+            console.log(data);
          });
     },
-    create: (req, res, next) => {
+    getCount: (req, next) => {
+        coinvalueModel.count(req, (err, data) => {
+            if (err) { 
+              return next(-1); 
+            };
+            return next(data);  ;
+        });
+    },
+    create: (req, next) => {
         coinvalueModel.create(req, function (err, user) {
             if (err) return console.log(err);
           //  res.json(user)
            console.log(user)
         })
     },
-    update: (id,req) => {
+    update: (id,req ,next) => {
         coinvalueModel.findOneAndUpdate(id, req, {new: true}, (err, data) => {
-            if (err) return console.log(err);
-            console.log(data)
+            if (err){
+                return next(-1);
+            }
+           return next(1);
         });
     },
 

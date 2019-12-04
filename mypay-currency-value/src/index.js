@@ -1,4 +1,9 @@
-//save the coin value ...
+/**
+ * 
+ * @develop by karthik
+ * save the coin value ...
+ * 
+*/
 
 import Api from "bittrex-api-node";
 import Env from "./env";
@@ -10,6 +15,10 @@ const api = Api({
     secretKey: Env.SECREATE_KEY,
     verbose: Env.VERBOSE
 });
+/**
+ * webSocket connection & disconnection
+ * no operation on this level
+ */
 
 const ws = api.webSocket();
 ws.on('connected', () => { console.log("welcome") });
@@ -27,26 +36,35 @@ ws.connect((client) => {
             return a.MarketName.match(/USD-/g);
         });
         d.forEach(element => {
-            var find_data = {
+            var find_json_data = {
                 "coinname": element.MarketName
             }
-            var insert_data = {
+            var insert_json_data = {
                 coinname: element.MarketName,
                 coinvalue: element.Last,
                 coinvolume: element.BaseVolume
             };
-            var coinname = controller.getbyname(find_data);
-            console.log("information", coinname);
-            if (typeof coinname !== 'undefined') {
-                controller.update(find_data, insert_data);
-            } else {
-                controller.create(insert_data, function (e) {
-                    console.log(e);
-                });
-            }
-            //            console.log(element.MarketName);
-            //   console.log(element.Last);
+            var update_json_data = {
+                coinname: element.MarketName,
+                coinvalue: element.Last,
+                coinvolume: element.BaseVolume
+            };
+            controller.getCount(find_json_data, function (counter) {
+                  if (counter >= 1) {
+                    controller.update(find_json_data, update_json_data,function(err,data){
+                        if(!err){    
+                          console.log(data);
+                        }else{
+                           console.log(err);
+                        }
+                    });
+                } else {
+                    controller.create(insert_json_data, function (e) {
+                        console.log(e);
+                    });
+                }
+                
+            });
         });
-
     });
 });
