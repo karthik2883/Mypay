@@ -1,3 +1,17 @@
+/**
+ * what should be their in this middle ware 
+ * authenticate the call
+ * channel -- enum ecommerce  , chat , iot etc
+ * if ecommerce than invoice key ,
+ * merchant key ,
+ * product information , 
+ * description ,
+ * price amount ,
+ * pay amount
+ * coins information , current coin price 
+ *  
+ */
+
 var mqtt = require('mqtt')
 var client = mqtt.connect('mqtt://localhost:1883')
 
