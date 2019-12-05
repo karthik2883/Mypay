@@ -11,6 +11,19 @@
  * coins information , current coin price 
  *  
  */
+
+//qos is not working need to change with paho 
+
+//channel/presence/id
+//channel/invoice/id
+//channel/merchant/id
+//channel/blockchain/id
+
+//identifier/presence/id
+//identifier/invoice/id
+//identifier/merchant/id
+//identifier/blockchain/id
+
 import env from './env'
 import MQTT from 'mqtt'
 var client = MQTT.connect(env.MQTT_CONNECTION);
@@ -27,8 +40,7 @@ client.on('connect', function () {
     
     client.subscribe('presence', function (err) {
         if (!err) {
-            message
-            client.publish('presence', '')            
+            client.publish('presence', 'hello')            
         }
     })
 })
