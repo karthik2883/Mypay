@@ -48,7 +48,8 @@ ws.connect((client) => {
             var update_json_data = {
                 coinname: element.MarketName,
                 coinvalue: element.Last,
-                coinvolume: element.BaseVolume
+                coinvolume: element.BaseVolume,
+                time: new Date()
             };
             controller.getCount(find_json_data, function (counter) {
                 if (counter >= 1) {

@@ -4,6 +4,10 @@ var JsonChannelsData = {
 var JsonidentifiersData = {
     identifiers: []
 };
+var JsonmessageData = {
+    message: []
+};
+
 const utilityHelpers = {
    
     channelJSONGENRATOR: (channelsArray) => {
@@ -22,7 +26,15 @@ const utilityHelpers = {
             jsonData[identifiersName] = identifiers.value;
         });
         return JsonidentifiersData.identifiers.push(jsonData);
-    }
+    },
+    messageJSONGENRATOR: (messageArray) => {
+        var jsonData = {};
+        messageArray.forEach(function (message) {
+            var messageName = message.metadata.messageName;
+            jsonData[messageName] = message.value;
+        });
+        return JsonmessageData.message.push(jsonData);
+    },
 
 };
 export default utilityHelpers;

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-import coinvalueSchema from './../schema/coinvalue';
 mongoose.set('debug', false);
+import coinvalueSchema from './../schema/coinvalue';
+
 const coinvalueModel = mongoose.model('coinvalue', coinvalueSchema);
 export default coinvalueModel;

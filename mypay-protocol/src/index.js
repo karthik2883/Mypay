@@ -26,6 +26,8 @@
 
 import env from './env'
 import MQTT from 'mqtt'
+import './database/db';
+import controller from "./controller/coinvalueController"
 var client = MQTT.connect(env.MQTT_CONNECTION);
  
 
@@ -35,17 +37,44 @@ var client = MQTT.connect(env.MQTT_CONNECTION);
  * b) request from the merchant 
  * d) session alive management
  **/
+/**
+ * in future all will be in mongodb
+ */
+function defaultSubscription(){
+
+    var array_of_subscription = [
+        'channel/presence',
+        'channel/invoice',
+        'channel/merchant',
+        'channel/blockchain',
+        'identifier/presence',
+        'identifier/invoice',
+        'identifier/merchant',
+        'identifier/blockchain'  
+  ];
+    return array_of_subscription;
+} 
 
 client.on('connect', function () {
-     client.subscribe('presence', function (err) {
-        if (!err) {
-            client.publish('presence', 'hello')            
-        }
-    })
+    defaultSubscription().forEach(element => {
+        client.subscribe(element);
+    });
+     
 })
+//creating mockup
 
 client.on('message', function (topic, message) {
     // message is Buffer
-   // console.log(message.toString())
-    client.end()
+   var message = message.toString();
+    console.log(topic,message);
+  // json parse and subscribe and publish
+    // client.subscribe('channel/presence/', function (err) {
+    //     if (!err) {
+                
+       
+    //     }
+    // });
+    var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558e-45" }';
+    client.publish('channel/presence/1575615410', response);       
+    //client.end()
 })

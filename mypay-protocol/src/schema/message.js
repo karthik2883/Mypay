@@ -7,7 +7,19 @@ const messageSchema = new mongoose.Schema(
             type: String,
             index: false,
         },
-        messagejson: {
+        messageidentifier: {
+            type: String,
+            index: false,
+        },
+        messagefrom: {
+            type: String,
+            index: false,
+        },
+        messageto: {
+            type: String,
+            index: false,
+        },
+        message: {
             type: String,
             index: false,
         },       

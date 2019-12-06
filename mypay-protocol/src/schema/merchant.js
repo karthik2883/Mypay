@@ -7,9 +7,25 @@ const merchantSchema = new mongoose.Schema(
             type: String,
             index: false,
         },
-        merchantkey: {
-            type: Number,
+        merchantapikey: {
+            type: String,
             required: false
+        },
+        merchantsecretkey: {
+            type: String,
+            required: false
+        },
+        merchantdomainname: {
+            type: String,
+            required: false
+        },
+        merchantinfo: {
+            type: String,
+            required: false
+        },
+        merchantstatus: {
+            type: Boolean,
+            default: false
         },
         merchantvolume: {
             type: Number,
@@ -18,6 +34,6 @@ const merchantSchema = new mongoose.Schema(
         time: { type: Date, default: Date.now }
     }, { strict: true }
 );
-coinvalueSchema.plugin(autoIncrement.plugin, 'id');
+merchantSchema.plugin(autoIncrement.plugin, 'id');
 
-export default coinvalueSchema;
+export default merchantSchema;
