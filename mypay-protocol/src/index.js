@@ -27,7 +27,8 @@
 import env from './env'
 import MQTT from 'mqtt'
 import './database/db';
-import controller from "./controller/coinvalueController"
+import messagecontroller from "./controller/messageController"
+import coincontroller from "./controller/coinvalueController"
 var client = MQTT.connect(env.MQTT_CONNECTION);
  
 
@@ -71,12 +72,21 @@ client.on('message', MSG);
 function MSG(topic, message){
     var message = message.toString();
     console.log(topic, message);
-    var merchantid  = JSON.parse(message);
+    var merchantMsg  = JSON.parse(message);
     switch (topic){
         case  "channel/presence" :
-            if (merchantid.merchant_id) {
+            if (merchantMsg.merchant_id) {
+                //authentication 
+                //jwt token 
+                                  
+                var insert_json_data = "{'merchantMsg': 'test'}" 
+                messagecontroller.create(insert_json_data, function (e) {
+                    console.log(e);
+                });
+              
+
                 var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558KAR-45" }';
-                client.publish('identifier/presence/' + merchantid.merchant_id, response);
+                client.publish('identifier/presence', response);
             }
         break;
         case "channel/invoice":

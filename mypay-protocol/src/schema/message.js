@@ -3,19 +3,19 @@ import autoIncrement from "mongoose-auto-increment";
 
 const messageSchema = new mongoose.Schema(
     {
-        messagename: {
+        message_channel: {
             type: String,
             index: false,
         },
-        messageidentifier: {
+        message_identifier: {
             type: String,
             index: false,
         },
-        messagefrom: {
+        message_from: {
             type: String,
             index: false,
         },
-        messageto: {
+        message_to: {
             type: String,
             index: false,
         },
