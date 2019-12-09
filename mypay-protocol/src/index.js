@@ -60,21 +60,51 @@ client.on('connect', function () {
         client.subscribe(element);
     });
      
-})
+});
 //creating mockup
+//send api key and secreate key & ip -- channel/presence/merchantkey and subscribe to identifier/presence/merchantkey
+// authentication will happen on broker side --  channel/presence/merchantkey and publish  to identifier/presence/merchantkey
+//after authentication from broker session-key will be create and publish   to identifier/presence/merchantkey
+//proccess 
+ 
+client.on('message', MSG);  
+function MSG(topic, message){
+    var message = message.toString();
+    console.log(topic, message);
+    var merchantid  = JSON.parse(message);
+    switch (topic){
+        case  "channel/presence" :
+            if (merchantid.merchant_id) {
+                var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558KAR-45" }';
+                client.publish('identifier/presence/' + merchantid.merchant_id, response);
+            }
+        break;
+        case "channel/invoice":
+            if (merchantid.merchant_id) {
+                var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558KAR-45" }';
+                client.publish('identifier/presence/' + merchantid.merchant_id, response);
+            }
+        break;
+        case "channel/merchant":
+        break;
+        case "channel/blockchain":
+        break;
+        default:
+        break;
+    }
 
-client.on('message', function (topic, message) {
-    // message is Buffer
-   var message = message.toString();
-    console.log(topic,message);
-  // json parse and subscribe and publish
-    // client.subscribe('channel/presence/', function (err) {
-    //     if (!err) {
-                
-       
-    //     }
-    // });
-    var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558e-45" }';
-    client.publish('channel/presence/1575615410', response);       
-    //client.end()
-})
+    
+}
+// // message is Buffer
+// var message = message.toString();
+// console.log(topic, message);
+// // json parse and subscribe and publish
+// // client.subscribe('channel/presence/', function (err) {
+// //     if (!err) {
+
+
+// //     }
+// // });
+// var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558KAR-45" }';
+// client.publish('identifier/presence/1575615410', response);
+  // client.end()
