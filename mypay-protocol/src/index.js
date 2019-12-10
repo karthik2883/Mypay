@@ -31,7 +31,6 @@ import messagecontroller from "./controller/messageController"
 import coincontroller from "./controller/coinvalueController"
 var client = MQTT.connect(env.MQTT_CONNECTION);
  
-
 /**
  * what type of call will come 
  * a) address creation , transaction from the node
@@ -72,19 +71,22 @@ client.on('message', MSG);
 function MSG(topic, message){
     var message = message.toString();
     console.log(topic, message);
-    var merchantMsg  = JSON.parse(message);
-    switch (topic){
+    var merchantMsg  = JSON.parse(message);   
+    var newtopic = topic.split('/')[0] + "/" + topic.split('/')[1];
+    switch (newtopic){
         case  "channel/presence" :
             if (merchantMsg.merchant_id) {
                 //authentication 
                 //jwt token 
-                                  
-                var insert_json_data = "{'merchantMsg': 'test'}" 
+                   var insert_json_data = {
+                    "message_topic": topic,
+                    "message": message                     
+                }                 
+                
                 messagecontroller.create(insert_json_data, function (e) {
                     console.log(e);
                 });
               
-
                 var response = '{ "MerchantName": "findmeeveryday", "message": "welcome to fastest payment gateway", "session-id": "4545-558KAR-45" }';
                 client.publish('identifier/presence', response);
             }
@@ -100,6 +102,7 @@ function MSG(topic, message){
         case "channel/blockchain":
         break;
         default:
+            console.log(topic, message);
         break;
     }
 

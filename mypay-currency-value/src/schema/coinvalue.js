@@ -18,6 +18,10 @@ const coinvalueSchema = new mongoose.Schema(
         time: { type: Date, default: Date.now }
     }, { strict: true }
 );
-coinvalueSchema.plugin(autoIncrement.plugin, 'id');
+coinvalueSchema.plugin(autoIncrement.plugin, {
+    model: 'coinvalue',
+    field: 'id',
+    startAt: 1
+});
 
 export default coinvalueSchema;

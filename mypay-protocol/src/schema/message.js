@@ -3,19 +3,7 @@ import autoIncrement from "mongoose-auto-increment";
 
 const messageSchema = new mongoose.Schema(
     {
-        message_channel: {
-            type: String,
-            index: false,
-        },
-        message_identifier: {
-            type: String,
-            index: false,
-        },
-        message_from: {
-            type: String,
-            index: false,
-        },
-        message_to: {
+        message_topic: {
             type: String,
             index: false,
         },
@@ -26,5 +14,10 @@ const messageSchema = new mongoose.Schema(
         time: { type: Date, default: Date.now }
     }, { strict: true }
 );
-messageSchema.plugin(autoIncrement.plugin, 'id');
+messageSchema.plugin(autoIncrement.plugin, {
+      model: 'message',
+      field: 'id',
+      startAt: 1
+     
+});
 export default messageSchema;
