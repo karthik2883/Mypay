@@ -18,7 +18,7 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.4",
     "jsonwebtoken": "^8.0.1",
-    "mongodb": "^2.2.31",
+    "mongodb": "^3.1.13",
     "mongodb-migrate": "^2.0.2",
     "mongodb-migrations": "^0.8.5",
     "mongoose": "^4.11.11",
